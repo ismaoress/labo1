@@ -1,0 +1,72 @@
+/*
+La cuenta corriente de la famosa cantante Lady Lara ha registrado
+14 movimientos durante la semana pasada.
+Por cada movimiento se registró:
+Número de movimiento
+Día
+Tipo ('E' - Extracción / 'D' - Depósito)
+Importe
+
+Existe un registro por movimiento. Se desea calcular e informar:
+El saldo final de la cuenta.
+El porcentaje de movimientos de extracción y
+el porcentaje de depósito.
+El depósito de mayor importe indicando también día
+y número de movimiento.
+La cantidad de movimientos del día 10.
+*/
+
+#include <iostream>
+using namespace std;
+int main () {
+int dia, num_mov, cont_mov_dia10=0, cont_depo=0, cont_extra=0;
+float monto, total_depo=0, total_extra, saldo,mayor_monto_d = 0, aux_dia, aux_mov;
+char tipo;
+string msj;
+
+
+for (int x = 0; x < 2; x++){
+
+    cout << "Numero de movimiento: ";
+    cin >> num_mov;
+    cout << "Dia: ";
+    cin >> dia;
+    cout << "Seleccione e/extraccion o d/deposito: ";
+    cin >> tipo;
+    cout << "Ingrese el monto: ";
+    cin >> monto;
+    cout << endl << endl;
+
+    switch (tipo) {
+    case 'd' :
+        total_depo+= monto;
+        cont_depo++;
+        if(monto<mayor_monto_d){
+        mayor_monto_d= monto;
+        aux_dia=dia;
+        aux_mov=num_mov;
+        }
+        break;
+
+        case 'e':
+        total_extra=monto;
+        cont_extra++;
+         break;
+    }
+    if (dia == 10){
+        cont_mov_dia10++;
+        }
+
+}
+ saldo = total_depo - total_extra;
+
+    cout << "Saldo final: " << saldo << endl;
+    cout << "Porcentaje de depositos " << (float)cont_depo * 100 /14 << " %" << endl;
+    cout << "Porcentaje de extracciones " << (float)cont_extra * 100 /14 << " %" << endl;
+    cout << "Mayor deposito fue: $" << mayor_monto_d << "  dia: " << aux_dia << " Movimiento Numero: " << aux_mov << endl;
+    cout << "Total de operaciones del dia 10: " << cont_mov_dia10 << endl;
+
+
+return 0;
+
+}
