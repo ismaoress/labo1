@@ -1,0 +1,113 @@
+/*
+En una empresa los empleados cobran un sueldo según la categoría a la que pertenecen.
+Son 50 empleados y los sueldos son:
+
+Categoría 1: $38000
+Categoría 2: $70000
+Categoría 3: $105000
+
+Al sueldo se le suma además $ 1200 por cada año trabajado. Para cada empleado se tienen los siguientes datos:
+- Categoría (1 a 3)
+- Antigüedad (entero)
+
+Hay un registro por cada empleado. La información no está agrupada ni ordenada. Se pide calcular e informar:
+a) ¿Cuantos empleados hay para cada categoría?
+b) Total de sueldos (en $) pagados para cada categoría.
+c) Sueldo Promedio.
+d) ¿Cual fue el sueldo máximo y a que categoría pertenece?
+*/
+
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int main(){
+// datos de entrada
+int i,antiguedad, categoria; 
+int cont_categoria_1=0, ,cont_categoria_2=0, cont_categoria_3=0, sueldo_max=0,cat_max;
+const int categoria_a=38000, categoria_b=70000, categoria_c=105000;
+float sueldo=0, sueldo_a=0, sueldo_b=0, sueldo_c=0,acu_sueldo_uno=0,acu_sueldo_dos=0,acu_sueldo_tres=0,sueldo_promedio;
+
+cout<<"sueldo de los 50 empleados por categoria"<<endl;
+cout<<"--------------------------"<<endl;
+
+for (i=0;i<3;i++){
+cout << " EMPLEADO " << i+1 << endl;
+
+cout<<"ingrese la categoria: "<<endl;
+cin>> categoria;
+cout<<"ingrese la antiguedad: "<<endl;
+cin>>antiguedad;
+cout<<endl;
+
+    switch (categoria){
+    case 1:
+        cont_categoria_1++;
+        sueldo= categoria_a;
+        cout<<"sueldo es: " <<sueldo<< endl;
+        if(antiguedad>0){
+        sueldo= categoria_a+(1200*antiguedad);
+        sueldo_a+=sueldo;
+        acu_sueldo_uno+=sueldo_a;
+        cout<<"el sueldo total es con tu antiguedad: " <<sueldo_a<<endl;
+        }
+        break;
+
+    case 2:
+         cont_categoria_2++;
+        sueldo= categoria_b;
+        cout<<"sueldo es: " <<sueldo<< endl;
+        if(antiguedad>=1){
+        sueldo= categoria_b+(1200*antiguedad);
+        sueldo_b+=sueldo;
+        acu_sueldo_dos+=sueldo_b;
+        cout<<"el sueldo total es con tu antiguedad: " <<sueldo_b<<endl;
+        }
+        break;
+    case 3:
+         cont_categoria_3++;
+        sueldo= categoria_c;
+        cout<<"sueldo es: " <<sueldo<< endl;
+        if(antiguedad>=1){
+        sueldo= categoria_c+(1200*antiguedad);
+        sueldo_c+=sueldo;
+        acu_sueldo_tres+=sueldo_c;
+        cout<<"el sueldo total es con tu antiguedad: " <<sueldo_c<<endl;
+        }
+
+        break;
+   }
+
+    if(!sueldo_max){
+        sueldo_max=sueldo;
+        cat_max=categoria;
+    }
+    else if(sueldo_max<sueldo){
+            sueldo_max=sueldo;
+            cat_max=categoria;
+    }
+   }
+
+   sueldo_promedio= acu_sueldo_uno+acu_sueldo_dos+acu_sueldo_tres/3;
+
+   ///punto a
+    cout<<"total de empleados categoria 1: "<<cont_categoria_1<<endl;
+    cout<<"total de empleados categoria 2: "<<cont_categoria_2<<endl;
+    cout<<"total de empleados categoria 3: "<<cont_categoria_3<<endl;
+    cout<<"--------------------------------"<<endl;
+  /// punto b
+    cout << " SUELDO TOTAL PAGADO CATEGORÍA 1: $ " << acu_sueldo_uno << endl;
+    cout << " SUELDO TOTAL PAGADO CATEGORÍA 2: $ " << acu_sueldo_dos  << endl;
+    cout << " SUELDO TOTAL PAGADO CATEGORÍA 3: $ " << acu_sueldo_tres  << endl;
+    cout<<"--------------------------------"<<endl;
+  /// punto c
+    cout << " SUELDO PROMEDIO: $ " << sueldo_promedio << endl;
+    cout << "------------------------------"  << endl;
+  /// punto d
+    cout << " SUELDO MÁXIMO: $ " << sueldo_max << " CATEGORÍA: "<<cat_max << endl;
+    cout << "------------------------------" << endl;
+
+
+
+        return 0;
+}
